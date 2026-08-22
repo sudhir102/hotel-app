@@ -48,6 +48,5 @@ src/app/
 ## Notes
 
 - Built against Angular 11 (satisfies "any Angular version greater than 2 - 11").
-- The map uses an embedded OpenStreetMap iframe (no API key required) driven by the hotel's latitude/longitude — swap in Google Maps JS API if you have a key.
-- Edits made in the Left Panel update local component state only; wire `HotelService.updateHotel()` to a real backend to persist changes.
-- 
+
+ ## Thanks 
