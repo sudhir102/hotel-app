@@ -1,0 +1,104 @@
+.home-container {
+  display: flex;
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  align-items: flex-start;
+}
+
+.right-panel {
+  flex: 1;
+  min-width: 0;
+}
+
+.tab-menu {
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  margin-bottom: 16px;
+  overflow-x: auto;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 8px 14px;
+  font-size: 13px;
+  border-radius: 4px;
+  color: #555;
+  white-space: nowrap;
+}
+
+.tab-btn.active {
+  background: #1a73e8;
+  color: #fff;
+}
+
+.widgets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.widget {
+  text-align: center;
+}
+
+.widget-label {
+  font-size: 11px;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.widget-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a73e8;
+}
+
+.panels-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.chart-card h4, .map-card h4 {
+  margin-top: 0;
+  font-size: 14px;
+  color: #444;
+}
+
+.field-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.field-row label { color: #888; }
+
+.note {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 8px 0;
+}
+
+.note-meta {
+  font-size: 11px;
+  color: #999;
+}
+
+.note-text {
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+.muted { color: #999; font-size: 13px; }
+
+@media (max-width: 720px) {
+  .home-container { flex-direction: column; }
+  .panels-row { grid-template-columns: 1fr; }
+}

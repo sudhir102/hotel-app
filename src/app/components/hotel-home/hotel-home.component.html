@@ -1,0 +1,118 @@
+<div class="home-container" *ngIf="hotel; else errorBlock">
+
+  <app-left-panel [hotel]="hotel"></app-left-panel>
+
+  <div class="right-panel">
+
+    <nav class="tab-menu card">
+      <button
+        *ngFor="let tab of tabs"
+        class="tab-btn"
+        [class.active]="activeTab === tab"
+        (click)="selectTab(tab)">
+        {{ tab }}
+      </button>
+    </nav>
+
+    <div class="tab-content">
+
+      <!-- HOME TAB -->
+      <div *ngIf="activeTab === 'Home'">
+
+        <div class="widgets-grid">
+          <div class="widget card">
+            <div class="widget-label">Last Used</div>
+            <div class="widget-value">{{ hotel.widgets.lastUsed }}</div>
+          </div>
+          <div class="widget card">
+            <div class="widget-label">Upcoming Confirmed</div>
+            <div class="widget-value">{{ hotel.widgets.upcomingConfirmed }}</div>
+          </div>
+          <div class="widget card">
+            <div class="widget-label">Upcoming Request</div>
+            <div class="widget-value">{{ hotel.widgets.upcomingRequest }}</div>
+          </div>
+          <div class="widget card">
+            <div class="widget-label">Next Booking Date</div>
+            <div class="widget-value">{{ hotel.widgets.nextBookingDate }}</div>
+          </div>
+          <div class="widget card">
+            <div class="widget-label">Open (&amp; Total) Complaints</div>
+            <div class="widget-value">{{ hotel.widgets.openComplaints }} ({{ hotel.widgets.totalComplaints }})</div>
+          </div>
+          <div class="widget card">
+            <div class="widget-label">To Be Paid</div>
+            <div class="widget-value">{{ hotel.widgets.toBePaid }}</div>
+          </div>
+        </div>
+
+        <div class="panels-row">
+          <div class="card chart-card">
+            <h4>Bookings Overview</h4>
+            <app-booking-chart [data]="hotel.bookingsOverview"></app-booking-chart>
+          </div>
+          <div class="card map-card">
+            <h4>Map</h4>
+            <app-map-view
+              [latitude]="hotel.location.latitude"
+              [longitude]="hotel.location.longitude"
+              [label]="hotel.name">
+            </app-map-view>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT TAB -->
+      <div *ngIf="activeTab === 'About'" class="card">
+        <h4>About</h4>
+        <p>{{ hotel.about }}</p>
+      </div>
+
+      <!-- CLASSIFICATION TAB -->
+      <div *ngIf="activeTab === 'Classification'" class="card">
+        <h4>Classification</h4>
+        <p>{{ hotel.classification }}</p>
+      </div>
+
+      <!-- PRODUCTS TAB -->
+      <div *ngIf="activeTab === 'Products'" class="card">
+        <h4>Products</h4>
+        <ul>
+          <li *ngFor="let p of hotel.products">{{ p }}</li>
+        </ul>
+        <p *ngIf="hotel.products.length === 0" class="muted">No products configured.</p>
+      </div>
+
+      <!-- TERMS TAB -->
+      <div *ngIf="activeTab === 'Terms'" class="card">
+        <h4>Terms</h4>
+        <p>{{ hotel.terms }}</p>
+      </div>
+
+      <!-- FINANCE TAB -->
+      <div *ngIf="activeTab === 'Finance'" class="card">
+        <h4>Finance</h4>
+        <div class="field-row"><label>Credit Limit</label><span>{{ hotel.finance.creditLimit }}</span></div>
+        <div class="field-row"><label>Payment Terms</label><span>{{ hotel.finance.paymentTerms }}</span></div>
+        <div class="field-row"><label>Tax Id</label><span>{{ hotel.finance.taxId }}</span></div>
+      </div>
+
+      <!-- NOTES TAB -->
+      <div *ngIf="activeTab === 'Notes'" class="card">
+        <h4>Notes</h4>
+        <div class="note" *ngFor="let n of hotel.notes">
+          <div class="note-meta">{{ n.author }} &middot; {{ n.date }}</div>
+          <div class="note-text">{{ n.text }}</div>
+        </div>
+        <p *ngIf="hotel.notes.length === 0" class="muted">No notes yet.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<ng-template #errorBlock>
+  <div class="error-banner">
+    Unable to load this hotel's details. <a routerLink="/search">Return to search</a>.
+  </div>
+</ng-template>

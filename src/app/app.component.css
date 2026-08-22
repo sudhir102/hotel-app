@@ -1,0 +1,19 @@
+.app-header {
+  background: #1a2a44;
+  color: #fff;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.header-link {
+  color: #cfe0ff;
+  font-size: 14px;
+}
+.header-link:hover { color: #fff; }

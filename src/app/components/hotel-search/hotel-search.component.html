@@ -1,0 +1,46 @@
+<div class="search-container">
+  <h2>Hotel Search</h2>
+
+  <div class="search-bar card">
+    <input
+      type="text"
+      placeholder="Search hotel by name..."
+      [(ngModel)]="searchTerm"
+      (keyup.enter)="onSearch()"
+      class="search-input"
+    />
+    <button class="btn-primary" (click)="onSearch()">Search</button>
+    <button class="btn-secondary" (click)="onClear()" *ngIf="searchTerm">Clear</button>
+  </div>
+
+  <div class="error-banner" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <div class="loading" *ngIf="loading">Loading hotels...</div>
+
+  <div *ngIf="!loading && !errorMessage">
+    <p class="result-count">{{ total }} hotel(s) found</p>
+
+    <div class="hotel-list">
+      <div class="hotel-row card" *ngFor="let hotel of hotels">
+        <img [src]="hotel.imageUrl" alt="{{ hotel.name }}" class="hotel-thumb" />
+        <div class="hotel-info">
+          <a [routerLink]="['/home', hotel.id]" class="hotel-name-link">{{ hotel.name }}</a>
+          <div class="hotel-meta">
+            {{ hotel.provider }} &middot; {{ hotel.hotelType }} &middot; {{ hotel.location.city }}, {{ hotel.address.country }}
+          </div>
+          <span class="status-badge" [class.active]="hotel.active" [class.inactive]="!hotel.active">
+            {{ hotel.active ? 'Active' : 'Inactive' }}
+          </span>
+        </div>
+      </div>
+
+      <div class="no-results" *ngIf="hotels.length === 0">No hotels match your search.</div>
+    </div>
+
+    <div class="pagination" *ngIf="total > 0">
+      <button class="btn-secondary" (click)="goToPage(page - 1)" [disabled]="page === 1">Prev</button>
+      <span class="page-info">Page {{ page }} of {{ totalPages }}</span>
+      <button class="btn-secondary" (click)="goToPage(page + 1)" [disabled]="page === totalPages">Next</button>
+    </div>
+  </div>
+</div>

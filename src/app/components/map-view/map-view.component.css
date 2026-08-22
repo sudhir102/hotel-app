@@ -1,0 +1,11 @@
+.map-container iframe {
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.coords {
+  font-size: 11px;
+  color: #888;
+  margin-top: 4px;
+  text-align: right;
+}

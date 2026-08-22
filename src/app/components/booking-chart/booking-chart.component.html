@@ -1,0 +1,11 @@
+<div class="chart-wrapper">
+  <div class="bars">
+    <div class="bar-col" *ngFor="let m of data">
+      <div class="bar-track">
+        <div class="bar" [style.height.%]="barHeight(m.count)" [title]="m.count + ' bookings'"></div>
+      </div>
+      <span class="bar-value">{{ m.count }}</span>
+      <span class="bar-label">{{ m.month }}</span>
+    </div>
+  </div>
+</div>

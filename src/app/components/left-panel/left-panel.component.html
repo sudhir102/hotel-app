@@ -1,0 +1,66 @@
+<div class="left-panel card" *ngIf="hotel">
+
+  <div class="image-section">
+    <img [src]="hotel.imageUrl" alt="{{ hotel.name }}" class="hotel-image" />
+    <h3 class="hotel-title">{{ hotel.name }}</h3>
+    <div class="provider">{{ hotel.provider }}</div>
+    <span class="status-badge" [class.active]="hotel.active" [class.inactive]="!hotel.active">
+      {{ hotel.active ? 'Active' : 'Inactive' }}
+    </span>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span>Address</span>
+      <button class="edit-btn" (click)="toggleAddressEdit()">
+        {{ editingAddress ? 'Close' : 'Edit' }}
+      </button>
+    </div>
+
+    <ng-container *ngIf="!editingAddress">
+      <div class="field-row"><label>Street</label><span>{{ hotel.address.street }}</span></div>
+      <div class="field-row"><label>State</label><span>{{ hotel.address.state }}</span></div>
+      <div class="field-row"><label>Country</label><span>{{ hotel.address.country }}</span></div>
+      <div class="field-row"><label>Pincode</label><span>{{ hotel.address.pincode }}</span></div>
+      <div class="field-row"><label>Email</label><span>{{ hotel.email }}</span></div>
+      <div class="field-row"><label>Phone</label><span>{{ hotel.phone }}</span></div>
+    </ng-container>
+
+    <ng-container *ngIf="editingAddress">
+      <div class="field-row edit"><label>Street</label><input [(ngModel)]="hotel.address.street" /></div>
+      <div class="field-row edit"><label>State</label><input [(ngModel)]="hotel.address.state" /></div>
+      <div class="field-row edit"><label>Country</label><input [(ngModel)]="hotel.address.country" /></div>
+      <div class="field-row edit"><label>Pincode</label><input [(ngModel)]="hotel.address.pincode" /></div>
+      <div class="field-row edit"><label>Email</label><input [(ngModel)]="hotel.email" /></div>
+      <div class="field-row edit"><label>Phone</label><input [(ngModel)]="hotel.phone" /></div>
+      <button class="btn-primary save-btn" (click)="saveAddress()">Save</button>
+    </ng-container>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span>Basic Info</span>
+      <button class="edit-btn" (click)="toggleBasicInfoEdit()">
+        {{ editingBasicInfo ? 'Close' : 'Edit' }}
+      </button>
+    </div>
+
+    <ng-container *ngIf="!editingBasicInfo">
+      <div class="field-row"><label>Short Name</label><span>{{ hotel.shortName }}</span></div>
+      <div class="field-row"><label>Id</label><span>{{ hotel.id }}</span></div>
+      <div class="field-row"><label>Hotel type</label><span>{{ hotel.hotelType }}</span></div>
+      <div class="field-row"><label>Default Currency</label><span>{{ hotel.defaultCurrency }}</span></div>
+      <div class="field-row"><label>Location</label><span>{{ hotel.location.city }}</span></div>
+    </ng-container>
+
+    <ng-container *ngIf="editingBasicInfo">
+      <div class="field-row edit"><label>Short Name</label><input [(ngModel)]="hotel.shortName" /></div>
+      <div class="field-row"><label>Id</label><span>{{ hotel.id }}</span></div>
+      <div class="field-row edit"><label>Hotel type</label><input [(ngModel)]="hotel.hotelType" /></div>
+      <div class="field-row edit"><label>Default Currency</label><input [(ngModel)]="hotel.defaultCurrency" /></div>
+      <div class="field-row edit"><label>Location</label><input [(ngModel)]="hotel.location.city" /></div>
+      <button class="btn-primary save-btn" (click)="saveBasicInfo()">Save</button>
+    </ng-container>
+  </div>
+
+</div>
